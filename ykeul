@@ -1,0 +1,1711 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kế hoạch kinh doanh Crypto - Trang giới thiệu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-alt: #0b1020;
+            --accent: #00c2ff;
+            --accent-soft: rgba(0, 194, 255, 0.1);
+            --accent-2: #9b59ff;
+            --text: #f5f5f5;
+            --muted: #a0a0b8;
+            --danger: #ff4d6a;
+            --border: rgba(255,255,255,0.08);
+            --radius: 14px;
+            --shadow-soft: 0 18px 40px rgba(0,0,0,0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1a2450 0, #050816 45%, #02030a 100%);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Layout chung */
+        .container {
+            width: min(1120px, 100% - 2rem);
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Header / Nav */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom, rgba(5,8,22,0.95), rgba(5,8,22,0.7), transparent);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 20% 20%, #00c2ff, #9b59ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+        }
+
+        .logo-text-main {
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 18px;
+        }
+
+        .logo-text-sub {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            position: relative;
+            padding-bottom: 6px;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: none;
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            color: var(--muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--text);
+            background: rgba(0, 194, 255, 0.05);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            box-shadow: 0 10px 25px rgba(0, 194, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.05);
+            transform: translateY(-1px);
+        }
+
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 12px;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: #fafafa;
+        }
+
+        @media (max-width: 860px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .mobile-menu {
+                position: fixed;
+                top: 58px;
+                left: 0;
+                right: 0;
+                background: rgba(5,8,22,0.98);
+                border-bottom: 1px solid rgba(255,255,255,0.07);
+                padding: 12px 0 18px;
+                display: none;
+                flex-direction: column;
+                gap: 6px;
+                z-index: 30;
+            }
+
+            .mobile-menu.open {
+                display: flex;
+            }
+
+            .mobile-menu a {
+                padding: 8px 16px;
+                font-size: 14px;
+                color: var(--muted);
+            }
+
+            .mobile-menu a:hover {
+                color: var(--text);
+                background: rgba(255,255,255,0.02);
+            }
+
+            .mobile-menu .mobile-cta {
+                padding: 10px 16px 2px;
+                display: flex;
+                gap: 10px;
+            }
+        }
+
+        /* HERO */
+        #hero {
+            padding-top: 40px;
+            padding-bottom: 90px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px 4px 5px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.11);
+            background: radial-gradient(circle at 0 0,#00c2ff33,#050816 50%);
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .badge-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 20% 20%, #00ff99, #00c2ff);
+            box-shadow: 0 0 14px #00ff99;
+        }
+
+        .hero-title {
+            font-size: clamp(30px, 5vw, 44px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 14px;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(130deg, #ffffff, #b6f3ff, #be9bff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .pill {
+            border-radius: 999px;
+            padding: 6px 11px;
+            font-size: 12px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--muted);
+        }
+
+        .pill strong {
+            color: var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .hero-note {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .hero-note span {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-card {
+            border-radius: 18px;
+            padding: 18px 18px 16px;
+            background: radial-gradient(circle at top,#262f6a,#06091a 60%);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at -10% -20%, rgba(0,194,255,0.38), transparent 55%);
+            pointer-events: none;
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .hero-card-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-card-tag {
+            font-size: 11px;
+            color: var(--muted);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .metric-card {
+            border-radius: 10px;
+            padding: 10px 11px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 11px;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .metric-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .metric-chip {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.16);
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 3px;
+        }
+
+        .metric-chip span {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #00ff99;
+        }
+
+        .hero-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .hero-mini-pill {
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(0,0,0,0.6);
+        }
+
+        .hero-orbit {
+            position: absolute;
+            right: -30px;
+            top: 40px;
+            width: 140px;
+            height: 140px;
+            border-radius: 999px;
+            border: 1px dashed rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+        }
+
+        .hero-orbit-inner {
+            width: 90px;
+            height: 90px;
+            border-radius: 999px;
+            border: 1px solid rgba(0,194,255,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle,#00c2ff33,transparent 65%);
+        }
+
+        .hero-orbit-token {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 0 0,#00c2ff,#9b59ff);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+            .hero-orbit {
+                position: absolute;
+                right: 8px;
+                top: 18px;
+                width: 110px;
+                height: 110px;
+            }
+
+            .hero-orbit-inner {
+                width: 72px;
+                height: 72px;
+            }
+
+            .hero-orbit-token {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #hero {
+                padding-top: 26px;
+            }
+        }
+
+        /* Section heading */
+        .section-header {
+            margin-bottom: 26px;
+        }
+
+        .section-eyebrow {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* About */
+        #about .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+            gap: 26px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 900px) {
+            #about .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            border-radius: var(--radius);
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--border);
+            padding: 18px 18px 14px;
+            box-shadow: 0 16px 35px rgba(0,0,0,0.45);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-body {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .chip {
+            border-radius: 999px;
+            padding: 4px 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .bullet-list {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .bullet-list li {
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+
+        /* Plan */
+        #plan .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 1000px) {
+            #plan .plan-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            #plan .plan-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .plan-card {
+            border-radius: 14px;
+            padding: 14px 14px 12px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(9,19,40,0.95));
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .plan-label {
+            font-size: 11px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .plan-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .plan-text {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Tokenomics */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .token-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .token-table th,
+        .token-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .token-table th {
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+
+        .token-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .token-pill {
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            border: 1px solid rgba(255,255,255,0.15);
+            display: inline-block;
+        }
+
+        .token-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        .token-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: radial-gradient(circle at top,#141a3c,#050816 55%);
+            padding: 16px 18px;
+        }
+
+        .roadmap-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0,1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 1000px) {
+            .roadmap-steps {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .roadmap-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .roadmap-step {
+            position: relative;
+            border-radius: 10px;
+            padding: 10px 10px 8px;
+            background: rgba(0,0,0,0.65);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+        }
+
+        .roadmap-step h4 {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .roadmap-step small {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        .roadmap-step ul {
+            margin-top: 5px;
+        }
+
+        .roadmap-step li {
+            margin-left: 14px;
+            margin-bottom: 3px;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .team-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-card {
+            border-radius: 14px;
+            padding: 12px 12px 10px;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.09);
+            font-size: 12px;
+        }
+
+        .team-role {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .team-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+
+        .team-links {
+            font-size: 11px;
+            margin-top: 6px;
+            display: flex;
+            gap: 8px;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+            gap: 18px;
+        }
+
+        @media (max-width: 900px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-item {
+            border-radius: 10px;
+            background: rgba(0,0,0,0.65);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 9px 11px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-question span {
+            font-size: 16px;
+        }
+
+        .faq-answer {
+            padding: 0 11px 8px;
+            font-size: 12px;
+            color: var(--muted);
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.3fr);
+            gap: 18px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.7);
+            color: var(--text);
+            padding: 7px 9px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .contact-note {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 0 24px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-legal {
+            max-width: 620px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .disclaimer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            font-size: 10px;
+            color: var(--danger);
+            background: rgba(0,0,0,0.7);
+        }
+
+        .disclaimer-badge span {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--danger);
+        }
+
+        @media (max-width: 640px) {
+            .footer-grid {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav">
+        <div class="logo">
+            <div class="logo-icon">C</div>
+            <div>
+                <div class="logo-text-main">Kế hoạch Kinh doanh Crypto</div>
+                <div class="logo-text-sub">Dịch vụ • Web3 • Cộng đồng</div>
+            </div>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#about" class="nav-link active">Tổng quan</a>
+            <a href="#plan" class="nav-link">Kế hoạch</a>
+            <a href="#tokenomics" class="nav-link">Tokenomics</a>
+            <a href="#roadmap" class="nav-link">Lộ trình</a>
+            <a href="#team" class="nav-link">Đội ngũ</a>
+            <a href="#contact" class="nav-link">Liên hệ</a>
+        </nav>
+
+        <div class="nav-cta">
+            <a href="#plan" class="btn btn-outline btn-sm">Xem chi tiết</a>
+            <a href="https://www.canva.com/design/DAG6L4ot1sE/ggv8JaWLu4QvsVFRlPk50g/edit?utm_content=DAG6L4ot1sE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="btn btn-primary btn-sm">Tải Whitepaper (PDF)</a>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="container hero-grid">
+            <div>
+                <div class="badge">
+                    <div class="badge-dot"></div>
+                    Kế hoạch kinh doanh Crypto thực chiến
+                </div>
+                <h1 class="hero-title">
+                    Xây dựng mô hình <span class="hero-gradient">dịch vụ Crypto</span> an toàn, minh bạch, dễ mở rộng.
+                </h1>
+                <p class="hero-subtitle">
+                    Kế hoạch tập trung vào dịch vụ kỹ thuật &amp; nội dung xung quanh crypto: định hướng, mô hình kinh doanh,
+                    thị trường &amp; khách hàng mục tiêu, sản phẩm – dịch vụ, doanh thu dự kiến, marketing, quy trình làm việc,
+                    rủi ro và lộ trình phát triển 1–3 năm.
+                </p>
+
+                <div class="hero-highlights">
+                    <div class="pill"><strong>Định hướng:</strong> dẫn đầu trong giải pháp tài chính số dựa trên blockchain</div>
+                    <div class="pill"><strong>Giá trị cốt lõi:</strong> minh bạch – bảo mật – công nghệ – cộng đồng</div>
+                    <div class="pill"><strong>Doanh thu mẫu:</strong> 12–20 triệu/tháng từ dịch vụ (không cần vốn coin)</div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#about" class="btn btn-primary">Xem Kế Hoạch Chi Tiết</a>
+                    <a href="#roadmap" class="btn btn-outline">Lộ trình 1–3 năm</a>
+                </div>
+                <div class="hero-note">
+                    <span>Lưu ý:</span> Đây là kế hoạch kinh doanh &amp; dịch vụ, <strong>không cam kết lợi nhuận</strong>, không nhận quản lý vốn.
+                    Mọi quyết định đầu tư crypto là do mỗi cá nhân tự chịu trách nhiệm.
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <div>
+                            <div class="hero-card-title">Tóm tắt mô hình doanh thu</div>
+                            <div style="font-size:11px;color:var(--muted);">Dịch vụ kỹ thuật, đào tạo &amp; nội dung về crypto</div>
+                        </div>
+                        <div class="hero-card-tag">Service-based Crypto Model</div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Nguồn doanh thu chính</div>
+                            <div class="metric-value">Dịch vụ &amp; nội dung</div>
+                            <div class="metric-chip">
+                                <span></span> Không cần vốn đầu tư vào coin
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Doanh thu mẫu 1 tháng</div>
+                            <div class="metric-value">12–20 triệu VNĐ</div>
+                            <div class="metric-chip">
+                                <span></span> Ví dụ, không cam kết lặp lại
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-card-footer">
+                        <div>
+                            <div class="hero-mini-pill">Tập trung an toàn &amp; minh bạch</div>
+                            <div style="margin-top:3px;">Không quản lý vốn cho khách • Không cam kết lợi nhuận</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-size:10px;color:var(--muted);">Mô hình linh hoạt</div>
+                            <div style="font-size:11px;">Có thể mở rộng sau 6–12 tháng</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-orbit">
+                    <div class="hero-orbit-inner">
+                        <div class="hero-orbit-token">CB</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT: 1–4 -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">1–4. Định hướng &amp; mô hình</div>
+                <div class="section-title">Nền tảng kế hoạch kinh doanh Crypto</div>
+                <div class="section-desc">
+                    Phần này tóm tắt định hướng, mô hình kinh doanh, thị trường &amp; khách hàng mục tiêu cho mô hình dịch vụ crypto
+                    dựa trên blockchain, tập trung vào giá trị thực &amp; an toàn cho người dùng.
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <!-- 1. Định hướng -->
+                <div class="card">
+                    <div class="card-title">1. Định hướng</div>
+                    <div class="card-body">
+                        <p><strong>Tầm nhìn:</strong> dẫn đầu trong giải pháp tài chính số dựa trên blockchain.</p>
+                        <p style="margin-top:6px;"><strong>Sứ mệnh:</strong> đưa blockchain đến gần người dùng, phát triển sản phẩm mang giá trị thực.</p>
+
+                        <p style="margin-top:8px;"><strong>Giá trị cốt lõi:</strong></p>
+                        <ul class="bullet-list">
+                            <li><strong>Minh bạch:</strong> thông tin rõ ràng, không thổi phồng, không cam kết lợi nhuận.</li>
+                            <li><strong>Bảo mật:</strong> ưu tiên an toàn tài sản, hướng dẫn khách hàng giữ seed phrase &amp; phòng tránh scam.</li>
+                            <li><strong>Công nghệ:</strong> áp dụng blockchain, Web3, AI, bot giao dịch, công cụ phân tích.</li>
+                            <li><strong>Cộng đồng:</strong> xây cộng đồng Web3 chất lượng, cùng học – cùng làm – cùng phát triển.</li>
+                        </ul>
+
+                        <div class="chip-row">
+                            <div class="chip">Tài chính số</div>
+                            <div class="chip">Blockchain &amp; Web3</div>
+                            <div class="chip">Dịch vụ &amp; giáo dục</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2–4. Mô hình, Thị trường, Khách hàng -->
+                <div class="card">
+                    <div class="card-title">2–4. Mô hình kinh doanh, Thị trường &amp; Khách hàng</div>
+                    <div class="card-body">
+                        <p><strong>2. Mô hình kinh doanh (tuỳ chọn):</strong></p>
+                        <ul class="bullet-list">
+                            <li>Trading/đầu tư crypto (vốn tự có, không nhận ủy thác vốn).</li>
+                            <li>Phát triển sản phẩm Web3: token, DApp, NFT, DeFi.</li>
+                            <li>Dịch vụ hỗ trợ: đào tạo, tư vấn, marketing cho dự án.</li>
+                            <li>Bot AI giao dịch &amp; công cụ phân tích thị trường/on-chain.</li>
+                            <li>Môi giới/Launchpad phân phối dự án mới (chọn lọc, minh bạch).</li>
+                        </ul>
+
+                        <p style="margin-top:8px;"><strong>3. Thị trường &amp; xu hướng:</strong></p>
+                        <ul class="bullet-list">
+                            <li>Blockchain &amp; Web3 tăng trưởng mạnh, nhiều mảng mới (DeFi, NFT, GameFi, SocialFi...).</li>
+                            <li>RWA, stablecoin, AI + blockchain là các xu hướng mới tiềm năng.</li>
+                            <li>Nhu cầu staking, farming, airdrop và tham gia testnet/mainnet rất lớn.</li>
+                        </ul>
+
+                        <p style="margin-top:8px;"><strong>4. Khách hàng mục tiêu:</strong></p>
+                        <ul class="bullet-list">
+                            <li>Người mới tham gia crypto cần hướng dẫn an toàn &amp; kiến thức cơ bản.</li>
+                            <li>Trader và nhà đầu tư dài hạn cần phân tích thị trường &amp; công cụ hỗ trợ.</li>
+                            <li>Các dự án blockchain cần dịch vụ marketing hoặc kỹ thuật.</li>
+                            <li>Cộng đồng Web3 trong và ngoài nước muốn nội dung chất lượng &amp; cảnh báo rủi ro.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAN: 5–10 -->
+    <section id="plan">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">5–10. Kế hoạch triển khai</div>
+                <div class="section-title">Sản phẩm, doanh thu, marketing &amp; vận hành</div>
+                <div class="section-desc">
+                    Chi tiết các mảng chính của kế hoạch kinh doanh crypto: sản phẩm – dịch vụ, chiến lược marketing,
+                    tài chính &amp; doanh thu dự kiến, quy trình làm việc với khách, rủi ro &amp; cách xử lý, lộ trình phát triển &amp; mở rộng 6–36 tháng.
+                </div>
+            </div>
+
+            <div class="plan-grid">
+                <!-- 5. Sản phẩm – Dịch vụ chính -->
+                <div class="plan-card">
+                    <div class="plan-label">Sản phẩm – dịch vụ</div>
+                    <div class="plan-title">5. Sản phẩm – Dịch vụ chính</div>
+                    <div class="plan-text">
+                        <ul class="bullet-list">
+                            <li>Trading &amp; quản trị rủi ro (vốn tự có, không nhận quản lý vốn cho khách).</li>
+                            <li>Đào tạo, phân tích thị trường: khoá học, nội dung chia sẻ, báo cáo.</li>
+                            <li>Hệ sinh thái Web3 / token riêng phục vụ tiện ích &amp; cộng đồng.</li>
+                            <li>Công cụ AI và bot giao dịch hỗ trợ phân tích – không cam kết thắng.</li>
+                            <li>Tư vấn – truyền thông cho dự án blockchain/Web3.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. Marketing -->
+                <div class="plan-card">
+                    <div class="plan-label">Marketing &amp; cộng đồng</div>
+                    <div class="plan-title">6. Chiến lược Marketing</div>
+                    <div class="plan-text">
+                        <ul class="bullet-list">
+                            <li>Xây kênh YouTube, TikTok, Telegram, X để chia sẻ kiến thức &amp; thu hút khách hàng.</li>
+                            <li>Làm video TikTok 20–40s: “Top 5 sai lầm khi mới vào crypto”, cảnh báo scam, tip an toàn.</li>
+                            <li>Nhận dịch vụ qua Messenger / Zalo / Telegram với bảng giá rõ ràng.</li>
+                            <li>Đăng bài phân tích nhẹ nhàng lên Facebook, Reddit, group cộng đồng.</li>
+                            <li>Tổ chức livestream Q&amp;A, AMA, hội thảo blockchain online/offline.</li>
+                            <li>Làm mini e-book miễn phí để thu khách mới (đổi lấy email/Telegram/Zalo).</li>
+                            <li>Xây nhóm Telegram 100–500 người đầu tiên để nuôi cộng đồng core.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. Tài chính & Doanh thu dự kiến -->
+                <div class="plan-card">
+                    <div class="plan-label">Tài chính &amp; doanh thu</div>
+                    <div class="plan-title">7. Tài chính &amp; Doanh thu dự kiến</div>
+                    <div class="plan-text">
+                        <p><strong>Cấu trúc tài chính:</strong></p>
+                        <ul class="bullet-list">
+                            <li><strong>Chi phí:</strong> marketing, nhân sự, công nghệ, phí blockchain.</li>
+                            <li><strong>Doanh thu:</strong> trading (vốn tự có), dịch vụ, phí giao dịch, token/NFT.</li>
+                            <li><strong>Rủi ro:</strong> không cam kết lợi nhuận, quản trị vốn chặt chẽ.</li>
+                        </ul>
+
+                        <p style="margin-top:8px;"><strong>Ví dụ doanh thu 1 tháng (dịch vụ):</strong></p>
+                        <table class="token-table" style="font-size:11px;margin-top:4px;">
+                            <thead>
+                                <tr>
+                                    <th>Dịch vụ</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Doanh thu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tạo ví</td>
+                                    <td>20 khách</td>
+                                    <td>150k</td>
+                                    <td>3.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Check scam</td>
+                                    <td>10</td>
+                                    <td>200k</td>
+                                    <td>2.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Bot tracking</td>
+                                    <td>10</td>
+                                    <td>200k</td>
+                                    <td>2.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>On/off ramp</td>
+                                    <td>20 giao dịch</td>
+                                    <td>150k/lần</td>
+                                    <td>3.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Content TikTok</td>
+                                    <td>quảng cáo nhỏ</td>
+                                    <td>–</td>
+                                    <td>3.000.000–10.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top:4px;">
+                            → <strong>Tổng thu mẫu:</strong> 12–20 triệu/tháng (không cần vốn đầu tư vào coin, chỉ dựa trên dịch vụ &amp; nội dung).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 8. Quy trình & Vận hành -->
+                <div class="plan-card">
+                    <div class="plan-label">Quy trình &amp; vận hành</div>
+                    <div class="plan-title">8. Quy trình làm việc &amp; Vận hành</div>
+                    <div class="plan-text">
+                        <p><strong>Quy trình làm việc với khách:</strong></p>
+                        <ul class="bullet-list">
+                            <li>Khách nhắn → hỏi nhu cầu cụ thể.</li>
+                            <li>Báo giá rõ ràng theo từng loại dịch vụ.</li>
+                            <li>Làm dịch vụ online (screenshare, video call, hướng dẫn trực tiếp).</li>
+                            <li>Thanh toán (ngân hàng, ví điện tử) sau khi thống nhất.</li>
+                            <li>Gửi tài liệu + hướng dẫn an toàn chi tiết.</li>
+                            <li>Xin feedback &amp; đăng lên page (nếu khách đồng ý) → tăng uy tín.</li>
+                        </ul>
+
+                        <p style="margin-top:8px;"><strong>Vận hành &amp; an toàn hệ thống:</strong></p>
+                        <ul class="bullet-list">
+                            <li>Quy trình giao dịch an toàn, phân quyền rõ ràng.</li>
+                            <li>Lưu trữ tài sản bằng ví lạnh cho phần tài sản dài hạn.</li>
+                            <li>Minh bạch báo cáo ở mức cho phép.</li>
+                            <li>Kiểm tra bảo mật hợp đồng thông minh trước khi triển khai.</li>
+                            <li>Phát triển hệ thống phân tích on-chain phục vụ dịch vụ &amp; cộng đồng.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 9. Rủi ro & cách xử lý -->
+                <div class="plan-card">
+                    <div class="plan-label">Rủi ro</div>
+                    <div class="plan-title">9. Rủi ro &amp; Cách xử lý</div>
+                    <div class="plan-text">
+                        <ul class="bullet-list">
+                            <li><strong>Biến động thị trường:</strong> không quản lý vốn cho khách, chỉ làm dịch vụ kỹ thuật/kiến thức.</li>
+                            <li><strong>Khách mất ví:</strong> luôn nhắc họ tự giữ seed phrase, không bao giờ chia sẻ cho bất kỳ ai.</li>
+                            <li><strong>Scam:</strong> không nhận dự án bẩn, dự án có dấu hiệu lừa đảo hoặc ponzi.</li>
+                            <li><strong>Pháp lý:</strong> chỉ làm dịch vụ kỹ thuật, đào tạo, tư vấn; không gọi vốn, không cam kết lợi nhuận.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 10. Lộ trình & mở rộng -->
+                <div class="plan-card">
+                    <div class="plan-label">Lộ trình &amp; mở rộng</div>
+                    <div class="plan-title">10. Lộ trình phát triển &amp; mở rộng 6–36 tháng</div>
+                    <div class="plan-text">
+                        <p><strong>Lộ trình 3 năm:</strong></p>
+                        <ul class="bullet-list">
+                            <li><strong>Năm 1:</strong> xây dựng cộng đồng, phát triển sản phẩm cốt lõi.</li>
+                            <li><strong>Năm 2:</strong> ra mắt sản phẩm Web3 hoặc token, hợp tác quốc tế.</li>
+                            <li><strong>Năm 3:</strong> mở rộng hệ sinh thái &amp; trở thành thương hiệu mạnh trong Web3.</li>
+                        </ul>
+
+                        <p style="margin-top:8px;"><strong>Mở rộng sau 6–12 tháng:</strong></p>
+                        <ul class="bullet-list">
+                            <li>Tạo kênh YouTube (video dài, phân tích sâu hơn).</li>
+                            <li>Làm app/công cụ cảnh báo giá.</li>
+                            <li>Hợp tác với sàn CEX để làm affiliate (hoa hồng từ sàn, không thu thêm từ khách).</li>
+                            <li>Nhận review dự án chuẩn chỉnh, minh bạch, có sàng lọc.</li>
+                            <li>Mở lớp học lớn hơn (50–200 người) online/offline.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOKENOMICS (giữ nguyên mẫu, bạn có thể chỉnh sau) -->
+    <section id="tokenomics">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Tokenomics</div>
+                <div class="section-title">Cấu trúc token &amp; phân bổ sử dụng (mẫu)</div>
+                <div class="section-desc">
+                    Nếu sau này bạn triển khai token riêng cho hệ sinh thái, có thể dùng khung tokenomics mẫu này và chỉnh sửa lại.
+                    Hiện tại, mô hình của bạn có thể hoạt động chỉ với dịch vụ &amp; nội dung, không bắt buộc phải có token.
+                </div>
+            </div>
+
+            <div class="tokenomics-grid">
+                <div class="card">
+                    <div class="card-title">Thông số cơ bản (ví dụ)</div>
+                    <div class="card-body">
+                        <p><strong>Ký hiệu token:</strong> CBT (Crypto Business Token)</p>
+                        <p><strong>Tổng cung tối đa:</strong> 100.000.000 CBT</p>
+                        <p><strong>Chuẩn token:</strong> ERC-20 / BEP-20 (tùy chain)</p>
+
+                        <table class="token-table" style="margin-top:10px;">
+                            <thead>
+                                <tr>
+                                    <th>Hạng mục</th>
+                                    <th>Tỷ lệ</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Đội ngũ &amp; cố vấn</td>
+                                    <td>18%</td>
+                                    <td>Vesting 36 tháng, cliff 12 tháng</td>
+                                </tr>
+                                <tr>
+                                    <td>Private Sale</td>
+                                    <td>15%</td>
+                                    <td>Vesting 18-24 tháng</td>
+                                </tr>
+                                <tr>
+                                    <td>Public Sale</td>
+                                    <td>7%</td>
+                                    <td>Unlock 20% TGE, còn lại vesting</td>
+                                </tr>
+                                <tr>
+                                    <td>Thanh khoản &amp; Market Making</td>
+                                    <td>15%</td>
+                                    <td>Khoá / quản trị bởi multisig</td>
+                                </tr>
+                                <tr>
+                                    <td>Phát triển hệ sinh thái</td>
+                                    <td>25%</td>
+                                    <td>Incentive cho người dùng / đối tác</td>
+                                </tr>
+                                <tr>
+                                    <td>Quỹ dự phòng &amp; R&amp;D</td>
+                                    <td>20%</td>
+                                    <td>Dùng cho dài hạn, giải ngân minh bạch</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="token-legend">
+                            <span><span class="token-dot" style="background:#00c2ff;"></span> Vesting dài hạn</span>
+                            <span><span class="token-dot" style="background:#9b59ff;"></span> Hỗ trợ hệ sinh thái</span>
+                            <span><span class="token-dot" style="background:#00ff99;"></span> Thanh khoản thị trường</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Nguyên tắc sử dụng token (nếu triển khai)</div>
+                    <div class="card-body">
+                        <ul class="bullet-list">
+                            <li><strong>Không cam kết lợi nhuận:</strong> Token dùng cho tiện ích &amp; quản trị, không bảo đảm lợi nhuận tài chính.</li>
+                            <li><strong>Minh bạch on-chain:</strong> Địa chỉ ví khoá / vesting được công bố &amp; giám sát công khai.</li>
+                            <li><strong>Hạn chế xả:</strong> Vesting hợp lý cho team, nhà đầu tư sớm, tránh áp lực bán lớn.</li>
+                            <li><strong>Chia sẻ giá trị:</strong> Một phần doanh thu có thể dùng để mua lại / burn hoặc tái đầu tư vào hệ sinh thái (nếu phù hợp).</li>
+                        </ul>
+
+                        <p style="margin-top:10px;font-size:12px;">
+                            Nên thiết kế tokenomics cùng với chuyên gia tài chính &amp; pháp lý để đảm bảo tuân thủ quy định địa phương &amp; quốc tế,
+                            tránh vô tình tạo cấu trúc bị hiểu nhầm là “hứa hẹn lợi nhuận”.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP (đã sửa theo lộ trình 3 năm + mở rộng) -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Lộ trình</div>
+                <div class="section-title">Lộ trình 3 năm &amp; mở rộng</div>
+                <div class="section-desc">
+                    Lộ trình được chia theo năm và theo giai đoạn mở rộng 6–12 tháng, phù hợp với mô hình dịch vụ crypto,
+                    xây dựng cộng đồng &amp; phát triển sản phẩm Web3.
+                </div>
+            </div>
+
+            <div class="roadmap">
+                <div class="roadmap-steps">
+                    <div class="roadmap-step">
+                        <h4>Năm 1 – Nền tảng &amp; cộng đồng</h4>
+                        <small>Tháng 1 – Tháng 12</small>
+                        <ul>
+                            <li>Xây dựng cộng đồng 100–500 người đầu tiên.</li>
+                            <li>Triển khai các dịch vụ cơ bản: tạo ví, check scam, bot tracking, on/off ramp.</li>
+                            <li>Xây dựng kênh TikTok, Facebook, Telegram; bắt đầu livestream Q&amp;A.</li>
+                        </ul>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h4>Năm 2 – Sản phẩm Web3 &amp; hợp tác</h4>
+                        <small>Năm 2</small>
+                        <ul>
+                            <li>Ra mắt sản phẩm Web3 hoặc token tiện ích (nếu phù hợp &amp; tuân thủ pháp lý).</li>
+                            <li>Hợp tác với dự án blockchain trong &amp; ngoài nước.</li>
+                            <li>Tạo kênh YouTube, mở rộng nội dung dài &amp; chuyên sâu.</li>
+                        </ul>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h4>Năm 3 – Mở rộng hệ sinh thái &amp; thương hiệu</h4>
+                        <small>Năm 3</small>
+                        <ul>
+                            <li>Mở rộng hệ sinh thái sản phẩm &amp; dịch vụ Web3.</li>
+                            <li>Trở thành thương hiệu uy tín trong cộng đồng Web3.</li>
+                            <li>Triển khai lớp học lớn hơn (50–200 người), workshop offline.</li>
+                        </ul>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h4>Mở rộng 6–12 tháng</h4>
+                        <small>Trong &amp; sau Năm 1</small>
+                        <ul>
+                            <li>Làm app/công cụ cảnh báo giá &amp; phân tích.</li>
+                            <li>Hợp tác với sàn CEX để làm affiliate.</li>
+                            <li>Nhận review dự án chuẩn chỉnh, có sàng lọc.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM (mẫu, bạn chỉnh theo team thật) -->
+    <section id="team">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Đội ngũ</div>
+            <div class="section-title">4 người đứng sau mô hình</div>
+            <div class="section-desc">
+                Đây là đội ngũ core chịu trách nhiệm xây dựng, vận hành và phát triển mô hình dịch vụ crypto.
+            </div>
+        </div>
+
+        <div class="team-grid">
+            <!-- Người 1 -->
+            <div class="team-card">
+                <div class="team-role">Founder &amp; Điều hành</div>
+                <div class="team-name">Ngô Gia Huy</div>
+                <p style="margin-top:4px;">
+                    Chịu trách nhiệm định hướng chiến lược, xây dựng mô hình kinh doanh dịch vụ crypto,
+                    phát triển sản phẩm &amp; xây dựng cộng đồng.
+                </p>
+                <div class="team-links">
+                    <a href="#">Facebook</a> · <a href="#">Telegram</a>
+                </div>
+            </div>
+
+            <!-- Người 2 -->
+            <div class="team-card">
+                <div class="team-role">Kỹ thuật &amp; Web3</div>
+                <div class="team-name">Nguyễn Hoàng Hải</div>
+                <p style="margin-top:4px;">
+                    Phụ trách phát triển bot AI, công cụ phân tích on-chain, hệ thống tracking,
+                    triển khai smart contract &amp; sản phẩm Web3.
+                </p>
+                <div class="team-links">
+                    <a href="#">Github</a> · <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <!-- Người 3 -->
+            <div class="team-card">
+                <div class="team-role">Marketing &amp; Cộng đồng</div>
+                <div class="team-name">Tạ Đức Minh Hiếu</div>
+                <p style="margin-top:4px;">
+                    Xây dựng nội dung TikTok/YouTube, quản lý kênh Telegram/Facebook,
+                    tổ chức livestream, AMA và phát triển cộng đồng Web3.
+                </p>
+                <div class="team-links">
+                    <a href="#">Facebook</a> · <a href="#">X (Twitter)</a>
+                </div>
+            </div>
+			<!-- Người 4 -->
+			<div class="team-card">
+				<div class="team-role">Kỹ thuật &amp; Blockchain</div>
+				<div class="team-name">Lê Văn Duy Lâm</div>
+				<p style="margin-top:4px;">
+					Phụ trách phát triển hạ tầng blockchain, tối ưu smart contract, 
+					bảo mật hệ thống, xử lý lỗi kỹ thuật và hỗ trợ vận hành các sản phẩm Web3.
+				</p>
+				<div class="team-links">
+					<a href="#">Github</a> · <a href="#">Facebook</a>
+				</div>
+			</div>
+
+            <!-- Người 5 -->
+            <div class="team-card">
+                <div class="team-role">Pháp lý &amp; Quản trị rủi ro</div>
+                <div class="team-name">Nguyễn Như Chương</div>
+                <p style="margin-top:4px;">
+                    Tư vấn khung pháp lý, đảm bảo mô hình không gọi vốn trái phép, không cam kết lợi nhuận,
+                    xây dựng quy trình quản trị rủi ro &amp; bảo mật cho khách hàng.
+                </p>
+                <div class="team-links">
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- FAQ & CONTACT -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Thông tin thêm</div>
+                <div class="section-title">Câu hỏi thường gặp &amp; liên hệ</div>
+                <div class="section-desc">
+                    Giải thích rõ hơn về rủi ro, phạm vi dịch vụ và cách liên hệ để hợp tác hoặc sử dụng dịch vụ.
+                </div>
+            </div>
+
+            <div class="faq-grid">
+                <div>
+                    <div class="card">
+                        <div class="card-title">Câu hỏi thường gặp</div>
+                        <div class="card-body">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Anh/chị có quản lý vốn hoặc đầu tư thay khách không?</span>
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Không. Mô hình tập trung vào <strong>dịch vụ kỹ thuật, đào tạo &amp; nội dung</strong>.
+                                    Anh/chị không nhận quản lý vốn, không ủy thác đầu tư, không cam kết lợi nhuận.
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Nếu em mất ví/mất tiền thì anh/chị có chịu trách nhiệm không?</span>
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Anh/chị luôn hướng dẫn kỹ cách bảo mật và <strong>yêu cầu khách tự giữ seed phrase</strong>.
+                                    Nếu khách chia sẻ seed/private key cho người khác hoặc click link scam, rủi ro thuộc về khách.
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Dịch vụ này có vi phạm pháp luật không?</span>
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Mục tiêu là chỉ cung cấp <strong>dịch vụ kỹ thuật, đào tạo &amp; tư vấn chung</strong>,
+                                    không gọi vốn, không bán sản phẩm tài chính, không cam kết lợi nhuận.
+                                    Tuy nhiên, pháp luật mỗi nước khác nhau, khách cần tự tìm hiểu thêm.
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Làm sao để đánh giá rủi ro trước khi tham gia crypto?</span>
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Nên:
+                                    <ul class="bullet-list">
+                                        <li>Học kiến thức cơ bản về blockchain &amp; bảo mật.</li>
+                                        <li>Bắt đầu với số vốn nhỏ, có thể mất hoàn toàn.</li>
+                                        <li>Tránh nghe theo “phím kèo”, ưu tiên tự nghiên cứu (DYOR).</li>
+                                        <li>Chỉ coi dịch vụ ở đây là hỗ trợ kỹ thuật &amp; kiến thức, không phải lời khuyên đầu tư.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="contact">
+                    <div class="card">
+                        <div class="card-title">Liên hệ sử dụng dịch vụ &amp; hợp tác</div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Họ tên / Tổ chức</label>
+                                    <input type="text" id="name" placeholder="Nhập tên của bạn hoặc công ty">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email liên hệ</label>
+                                    <input type="email" id="email" placeholder="you@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Bạn là</label>
+                                    <input type="text" id="type" placeholder="Người mới / Trader / Dự án Web3...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Nhu cầu của bạn</label>
+                                    <textarea id="message" placeholder="Mô tả nhu cầu, dịch vụ bạn cần hoặc đề xuất hợp tác"></textarea>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" style="margin-top:4px;width:100%;justify-content:center;">
+                                    Gửi thông tin
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-grid">
+        <div class="footer-legal">
+            <div class="disclaimer-badge">
+                <span></span> Cảnh báo rủi ro cao
+            </div>
+            <p style="margin-top:6px;">
+                Crypto là tài sản có độ biến động rất lớn và rủi ro cao. Nội dung trên trang web này chỉ nhằm mục đích thông tin &amp;
+                mô tả dịch vụ kỹ thuật/đào tạo, không phải lời khuyên đầu tư, khuyến nghị mua/bán bất kỳ tài sản nào.
+                Bạn cần tự nghiên cứu &amp; chịu trách nhiệm cho mọi quyết định của mình.
+            </p>
+        </div>
+        <div class="footer-links">
+            <a href="#about">Tổng quan</a> ·
+            <a href="#plan">Kế hoạch</a> ·
+            <a href="#tokenomics">Tokenomics</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Toggle mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+    }
+
+    // Active nav link when scrolling
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function onScroll() {
+        let currentId = "";
+        const fromTop = window.scrollY + 90;
+
+        sections.forEach(section => {
+            if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                currentId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentId) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', onScroll);
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            item.classList.toggle('open');
+        });
+    });
+</script>
+
+</body>
+
+</html>
+
+
